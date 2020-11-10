@@ -50,7 +50,6 @@ zone "semerub12.pw" {
 };
 ```
     ![testestes](/ss/1-1.png)
-</br>
 - Buat folder ```jarkom``` pada direktori ```/etc/bind``` : 
 ```mkdir /etc/bind/jarkom```
 - Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: 
