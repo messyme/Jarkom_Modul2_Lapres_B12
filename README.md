@@ -154,16 +154,67 @@ zone "semerub12.pw" {
 <a name="6"></a>
 ## SOAL NO 6
 ### subdomain dengan alamat http://gunung.semerub12.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO. Bibah juga ingin memberi petunjuk mendaki gunung semeru kepada anggota komunitas sehingga dia meminta dibuatkan 
+#### MALANG
+- Edit file ```nano /etc/bind/jarkom/semerub12.pw```
+- Tambahkan konfigurasi
+```
+gunung	IN	A	10.151.83.108	; IP PROBOLINGGO
+naik	IN	NS	gunung
+```
 ![testestes](/ss/6-1.png)
 
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+- Edit ```nano /etc/bind/named.conf.options```
+- Comment kan ```//dnssec-validation auto;```
+- Tambahkan ```allow-query{any;};```
 ![testestes](/ss/6-2.png)
 
+- Edit ```nano /etc/bind/named.conf.local```
+```
+zone "semerub12.pw" {
+    type master;
+    notify yes;
+    also-notify { 10.151.83.107; }; // IP MOJOKERTO
+    allow-transfer { 10.151.83.107; }; // MOJOKERTO
+    file "/etc/bind/jarkom/semerub12.pw";
+};
+```
 ![testestes](/ss/6-3.png)
 
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+#### MOJOKERTO
+- Edit ```nano /etc/bind/named.conf.options```
+- Comment kan ```//dnssec-validation auto;```
+- Tambahkan ```allow-query{any;};```
 ![testestes](/ss/6-4.png)
 
-![testestes](/ss/6-ping.png)
+- Edit file ```nano /etc/bind/named.conf.local```
+```
+zone "semerub12.pw" {
+    type slave;
+    masters { 10.151.83.107; }; // IP MALANG
+    file "/var/lib/bind/gunung.semerub12.pw";
+};
+```
+- Buat direktori delegasi ```mkdir /etc/bind/delegasi```
+- Copykan db.local ke dalam gunung.semeru.b12.pw ```cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub12.pw```
+- Edit ```nano /etc/bind/delegasi/gunung.semerub12.pw```
+- Menjadi
+```
+$TTL	604800
+@	IN	SOA	gunung.semerub12.pw. root.gunung.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
+@	IN	NS	gunung.semerub12.pw.
+@	IN	A	10.151.83.108	; IP PROBOLINGGO
+```
+
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
+- Lakukan testing ```ping gunung.semerub12.pw```
 </br></br></br>
 
 <a name="7"></a>
