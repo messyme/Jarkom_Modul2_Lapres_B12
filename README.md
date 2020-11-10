@@ -76,36 +76,49 @@ www	IN	CNAME	semerub12.pw.
 ![testestes](/ss/2-1.png)
 	
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
-- Lalu cek pada GRESIK ```ping www.semerub12.pw```
+- Lalu cek di GRESIK ```ping www.semerub12.pw```
 ![testestes](/ss/2-ping.png)
 </br></br></br>
 
 <a name="3"></a>
 ## SOAL NO 3
 ### subdomain http://penanjakan.semerub12.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO serta dibuatkan
-nano /etc/bind/jarkom/semerub12.pw
+- edit file semeru.pw pada MALANG ```nano /etc/bind/jarkom/semerub12.pw```
+```
+@	IN	A	10.151.83.108	; IP PROBOLINGGO
+www	IN	CNAME	semerub12.pw.
+penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
+```
 ![testestes](/ss/3-1.png)
 
-nano /etc/bind/named.conf.local
+- edit ```nano /etc/bind/named.conf.local```
 ![testestes](/ss/3-2.png)
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
-ping penanjakan.semerub12.pw
+- Kemudian pada GRESIK lakukan testing ```ping penanjakan.semerub12.pw```
 ![testestes](/ss/3-ping.png)
 </br></br></br>
 
 <a name="4"></a>
 ## SOAL NO 4
 ### reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak, Bibah minta dibuatkan
-nano /etc/bind/named.conf.local
+- Edit file ```nano /etc/bind/named.conf.local``` pada MALANG
+```
+zone "83.151.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
+};
+```
 ![testestes](/ss/4-1.png)
 
-- Kemudian restart bind9 dengan perintah ```service bind9 restart```
-cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa
-nano /etc/bind/jarkom/83.151.10.in-addr.arpa
+
+- copykan file db.local ke dalam file 83.151.10.in-addr.arpa pada folder jarkom dengan perintah ```cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa```
+- ```83.151.10``` merupakan 3 byte pertama IP MALANG yang di-reverse urutannya
+- Kemudian edit file dengan ```nano /etc/bind/jarkom/83.151.10.in-addr.arpa```
 ![testestes](/ss/4-2.png)
 
-host -t PTR 10.151.83.106
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+- Untuk mengecek konfigurasi dapat melakukan perintah ```host -t PTR 10.151.83.106``` pada GRESIK
 ![testestes](/ss/4-ping.png)
 </br></br></br>
 
