@@ -217,5 +217,72 @@ ping semerub12.pw
 
 
 6 ######################
+-------------------MALANG
+nano /etc/bind/jarkom/semerub12.pw
+$TTL	604800
+@	IN	SOA	semerub12.pw. root.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
+@	IN	NS	semerub12.pw.
+@	IN	A	10.151.83.108	; IP PROBOLINGGO
+www	IN	CNAME	semerub12.pw.
+penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
+gunung	IN	A	10.151.83.108	; IP PROBOLINGGO
+naik	IN	NS	gunung
+
+nano /etc/bind/named.conf.options
+//dnssec-validation auto;
+allow-query{any;};
+
+nano /etc/bind/named.conf.local
+zone "semerub12.pw" {
+    type master;
+    notify yes;
+    also-notify { 10.151.83.107; }; // IP MOJOKERTO
+    allow-transfer { 10.151.83.107; }; // MOJOKERTO
+    file "/etc/bind/jarkom/semerub12.pw";
+};
+
+zone "83.151.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
+};
+
+service bind9 restart
+
+------------------MOJOKERTO
+nano /etc/bind/named.conf.options
+//dnssec-validation auto;
+allow-query{any;};
+
+nano /etc/bind/named.conf.local
+zone "semerub12.pw" {
+    type slave;
+    masters { 10.151.83.107; }; // IP MALANG
+    file "/var/lib/bind/semerub12.pw";
+};
+
+mkdir /etc/bind/delegasi
+cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub12.pw
+
+nano /etc/bind/delegasi/gunung.semerub12.pw
+$TTL	604800
+@	IN	SOA	semerub12.pw. root.gunung.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
+@	IN	NS	gunung.semerub12.pw.
+@	IN	A	10.151.83.108	; IP PROBOLINGGO
+
+service bind9 restart
 
 
+--------------------GRESIK
+ping gunung.semerub12.pw
