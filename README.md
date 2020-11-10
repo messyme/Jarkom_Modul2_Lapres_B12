@@ -51,9 +51,12 @@ zone "semerub12.pw" {
 ```
     ![testestes](/ss/1-1.png)
 </br>
-- Buat folder ```jarkom``` pada direktori ```/etc/bind``` : ```mkdir /etc/bind/jarkom```
-- Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: ```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
-- Buka dan edit file semerub12.pw dengan perintah ```nano /etc/bind/jarkom/semerub12.pw```
+- Buat folder ```jarkom``` pada direktori ```/etc/bind``` : 
+```mkdir /etc/bind/jarkom```
+- Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: 
+```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
+- Buka dan edit file semerub12.pw dengan perintah 
+```nano /etc/bind/jarkom/semerub12.pw```
 ![testestes](/ss/1-2.png)
 </br>
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
