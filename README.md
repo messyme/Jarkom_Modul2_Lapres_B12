@@ -215,6 +215,7 @@ $TTL	604800
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 - Lakukan testing ```ping gunung.semerub12.pw```
+![testestes](/ss/6-ping.png)
 </br></br></br>
 
 <a name="7"></a>
