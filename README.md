@@ -70,6 +70,7 @@ nameserver 10.151.71.162     #IP MALANG
 <a name="2"></a>
 ## SOAL NO 2
 ### alias http://www.semerub12.pw
+- Buka file semerub12.pw pada server MALANG
 nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/2-1.png)
 service bind9 restart
