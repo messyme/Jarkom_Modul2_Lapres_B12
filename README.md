@@ -22,44 +22,84 @@
   15. [Nomor 15](#15)
   16. [Nomor 16](#16)
   17. [Nomor 17](#17)
+  </br></br></br>
+
+
+<!--
+![testestes](/ss/0-1.png)
+![testestes](/ss/0-2.png)
+![testestes](/ss/0-3.png)
+![testestes](/ss/0-4.png)
+![testestes](/ss/0-5.png)
+![testestes](/ss/0-6.png)
+</br></br></br>
+-->
 
 
 <a name="1"></a>
 ## SOAL NO 1
 ### membuat sebuah website utama dengan alamat http://semerub12.pw yang memiliki
+![testestes](/ss/1-1.png)
+![testestes](/ss/1-2.png)
+![testestes](/ss/1-3.png)
+</br></br></br>
 
 <a name="2"></a>
 ## SOAL NO 2
 ### alias http://www.semerub12.pw
+![testestes](/ss/2-1.png)
+![testestes](/ss/2-ping.png)
+</br></br></br>
 
 <a name="3"></a>
 ## SOAL NO 3
 ### subdomain http://penanjakan.semerub12.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO serta dibuatkan
+![testestes](/ss/3-1.png)
+![testestes](/ss/3-2.png)
+![testestes](/ss/3-ping.png)
+</br></br></br>
 
 <a name="4"></a>
 ## SOAL NO 4
 ### reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak, Bibah minta dibuatkan
+![testestes](/ss/4-1.png)
+![testestes](/ss/4-2.png)
+![testestes](/ss/4-ping.png)
+</br></br></br>
 
 <a name="5"></a>
 ## SOAL NO 5
 ### DNS Server Slave pada MOJOKERTO agar Bibah tidak terganggu menikmati keindahan Semeru pada Website. Selain website utama Bibah juga meminta dibuatkan 
-
+![testestes](/ss/5-1.png)
+![testestes](/ss/5-2.png)
+![testestes](/ss/5-3.png)
+![testestes](/ss/5-ping.png)
+</br></br></br>
 
 <a name="6"></a>
 ## SOAL NO 6
 ### subdomain dengan alamat http://gunung.semerub12.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO. Bibah juga ingin memberi petunjuk mendaki gunung semeru kepada anggota komunitas sehingga dia meminta dibuatkan 
+![testestes](/ss/6-1.png)
+![testestes](/ss/6-2.png)
+![testestes](/ss/6-3.png)
+![testestes](/ss/6-4.png)
+![testestes](/ss/6-ping.png)
+</br></br></br>
 
 <a name="7"></a>
 ## SOAL NO 7
 ### subdomain dengan nama http://naik.gunung.semerub12.pw, domain ini diarahkan ke IP Server PROBOLINGGO. Setelah selesai membuat keseluruhan domain, kamu diminta untuk segera mengatur web server.
+</br></br></br>
 
 <a name="8"></a>
 ### SOAL NO 8
 ### Domain http://semerub12.pw memiliki DocumentRoot pada /var/www/semerub12.pw. Awalnya web dapat diakses menggunakan alamat http://semerub12.pw/index.php/home . Karena dirasa alamat urlnya kurang bagus, maka
+</br></br></br>
 
 <a name="9"></a>
 ### SOAL NO 9
 ### diaktifkan mod rewrite agar urlnya menjadi http://semerub12.pw/home.
+</br></br></br>
 
 <a name="10"></a>
 ### SOAL NO 10
@@ -69,34 +109,40 @@
 ### /public/css
 ### /public/images
 ### /errors
-
+</br></br></br>
 
 <a name="11"></a>
 ### SOAL NO 11
 ### Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan.
+</br></br></br>
 
 <a name="12"></a>
 ### SOAL NO 12
 ### Untuk mengatasi HTTP Error code 404, disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache.
+</br></br></br>
 
 <a name="13"></a>
 ### SOAL NO 13
 ### Untuk mengakses file assets javascript awalnya harus menggunakan url http://penanjakan.semerub12.pw/public/javascripts. Karena terlalu panjang maka dibuatkan konfigurasi virtual host agar ketika mengakses file assets menjadi http://penanjakan.semerub12.pw/js. Untuk web http://gunung.semerub12.pw belum dapat dikonfigurasi pada web server karena menunggu pengerjaan website selesai. 
+</br></br></br>
 
 
 <a name="14"></a>
 ### SOAL NO 14
 ### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw. Dikarenakan web http://naik.gunung.semeruyyy.pw bersifat private 
+</br></br></br>
 
 <a name="15"></a>
 ### SOAL NO 15
 ### Bibah meminta kamu membuat web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semeruyyy.pw melainkan laman  default Apache yang bertuliskan “It works!”.
+</br></br></br>
 
 <a name="16"></a>
 ### SOAL NO 16
 ### Karena dirasa kurang profesional, maka setiap Bibah mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw.
+</br></br></br>
 
 <a name="17"></a>
 ### SOAL NO 17
 ### Karena pengunjung pada /var/www/penanjakan.semeruyyy.pw/public/images sangat banyak maka semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
-
+</br></br></br>
