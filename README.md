@@ -39,40 +39,79 @@
 <a name="1"></a>
 ## SOAL NO 1
 ### membuat sebuah website utama dengan alamat http://semerub12.pw yang memiliki
+- Buka MALANG dan update package lists dengan menjalankan command: ```apt-get update```
+- Install aplikasi bind9 pada MALANG
+nano /etc/bind/named.conf.local
 ![testestes](/ss/1-1.png)
+</br>
+mkdir /etc/bind/jarkom
+cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw
+nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/1-2.png)
+</br>
+service bind9 restart
+nano /etc/resolv.conf
+nameserver 10.151.71.162     #IP MALANG
 ![testestes](/ss/1-3.png)
+</br>
+ping semerub12.pw
 </br></br></br>
 
 <a name="2"></a>
 ## SOAL NO 2
 ### alias http://www.semerub12.pw
+nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/2-1.png)
+</br>
+ping www.semerub12.pw
 ![testestes](/ss/2-ping.png)
 </br></br></br>
 
 <a name="3"></a>
 ## SOAL NO 3
 ### subdomain http://penanjakan.semerub12.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO serta dibuatkan
+nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/3-1.png)
+</br>
+nano /etc/bind/named.conf.local
 ![testestes](/ss/3-2.png)
+</br>
+ping penanjakan.semerub12.pw
 ![testestes](/ss/3-ping.png)
 </br></br></br>
 
 <a name="4"></a>
 ## SOAL NO 4
 ### reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak, Bibah minta dibuatkan
+nano /etc/bind/named.conf.local
 ![testestes](/ss/4-1.png)
+</br>
+cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa
+nano /etc/bind/jarkom/83.151.10.in-addr.arpa
 ![testestes](/ss/4-2.png)
+</br>
+host -t PTR 10.151.83.106
 ![testestes](/ss/4-ping.png)
 </br></br></br>
 
 <a name="5"></a>
 ## SOAL NO 5
 ### DNS Server Slave pada MOJOKERTO agar Bibah tidak terganggu menikmati keindahan Semeru pada Website. Selain website utama Bibah juga meminta dibuatkan 
+MALANG
+nano /etc/bind/named.conf.local
 ![testestes](/ss/5-1.png)
+</br>
+MOJOKERTO
+apt-get update
+apt-get install bind9 -y
+nano /etc/bind/named.conf.local
 ![testestes](/ss/5-2.png)
+service bind9 restart
+</br>
+nano /etc/resolv.conf
 ![testestes](/ss/5-3.png)
+</br>
+ping semerub12.pw
 ![testestes](/ss/5-ping.png)
 </br></br></br>
 
@@ -80,9 +119,13 @@
 ## SOAL NO 6
 ### subdomain dengan alamat http://gunung.semerub12.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO. Bibah juga ingin memberi petunjuk mendaki gunung semeru kepada anggota komunitas sehingga dia meminta dibuatkan 
 ![testestes](/ss/6-1.png)
+</br>
 ![testestes](/ss/6-2.png)
+</br>
 ![testestes](/ss/6-3.png)
+</br>
 ![testestes](/ss/6-4.png)
+</br>
 ![testestes](/ss/6-ping.png)
 </br></br></br>
 
