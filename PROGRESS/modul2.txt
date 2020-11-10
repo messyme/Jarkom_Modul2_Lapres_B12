@@ -1,0 +1,192 @@
+10.151.36.202
+semogalancar
+IP NID 10.151.74.52
+IP DMZ 10.151.83.104
+
+IP_eth0_SURABAYA_tiap_kelompok = 10.151.74.54
+IP_tuntap_tiap_kelompok = 10.151.74.53
+IP_eth1_SURABAYA_tiap_kelompok = 10.151.83.105
+IP_MALANG_tiap_kelompok = 10.151.83.106
+IP_MOJOKERTO_tiap_kelompok = 10.151.83.107
+IP Server Probolinggo : 10.151.83.108
+
+
+-----------topologi.sh
+# Switch
+uml_switch -unix switch1 > /dev/null < /dev/null &
+uml_switch -unix switch2 > /dev/null < /dev/null &
+
+# Router
+xterm -T SURABAYA -e linux ubd0=SURABAYA,jarkom umid=SURABAYA eth0=tuntap,,,10.151.74.52 eth1=daemon,,,switch2 eth2=daemon,,,switch1 mem=96M &
+
+# Server
+xterm -T MALANG -e linux ubd0=MALANG,jarkom umid=MALANG eth0=daemon,,,switch2 mem=128M &
+xterm -T MOJOKERTO -e linux ubd0=MOJOKERTO,jarkom umid=MOJOKERTO eth0=daemon,,,switch2 mem=128M &
+xterm -T PROBOLINGGO -e linux ubd0=PROBOLINGGO,jarkom umid=PROBOLINGGO eth0=daemon,,,switch2 mem=128M &
+
+# Klien
+xterm -T SIDOARJO -e linux ubd0=SIDOARJO,jarkom umid=SIDOARJO eth0=daemon,,,switch1 mem=96M &
+xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 mem=96M &
+
+
+--------proxy
+export http_proxy=http://DPTSI-562913-a663c:514cb@proxy.its.ac.id:8080
+export https_proxy=http://DPTSI-562913-a663c:514cb@proxy.its.ac.id:8080
+export http_proxy=http://DPTSI-562913-a663c:514cb@proxy.its.ac.id:8080
+
+
+1 ##############
+-----------------MALANG
+nano /etc/bind/named.conf.local
+zone "semerub12.pw" {
+	type master;
+	file "/etc/bind/jarkom/semerub12.pw";
+};
+
+mkdir /etc/bind/jarkom
+
+cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw
+
+nano /etc/bind/jarkom/semerub12.pw
+$TTL	604800
+@	IN	SOA	semerub12.pw. root.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
+@	IN	NS	semerub12.pw.
+@	IN	A	10.151.83.106	; IP MALANG
+
+service bind9 restart
+
+
+----------------GRESIK
+nano /etc/resolv.conf
+nameserver 10.151.71.162     #IP MALANG
+
+ping semerub12.pw
+
+
+
+
+2 ###############
+------------------MALANG
+$TTL	604800
+@	IN	SOA	semerub12.pw. root.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
+@	IN	NS	semerub12.pw.
+@	IN	A	10.151.83.106	; IP MALANG
+www	IN	CNAME	semerub12.pw.
+
+service bind9 restart
+
+
+------------------GRESIK
+ping www.semerub12.pw
+
+
+
+
+3 ##############
+----------------MALANG
+nano /etc/bind/jarkom/semerub12.pw
+$TTL	604800
+@	IN	SOA	semerub12.pw. root.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
+@	IN	NS	semerub12.pw.
+@	IN	A	10.151.83.108	; IP PROBOLINGGO
+www	IN	CNAME	semerub12.pw.
+penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
+
+service bind9 restart
+
+
+----------------GRESIK
+ping penanjakan.semerub12.pw
+
+
+
+
+4 ###############
+------------------MALANG
+nano /etc/bind/named.conf.local
+zone "83.151.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
+};
+
+cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa
+
+nano /etc/bind/jarkom/83.151.10.in-addr.arpa
+83.151.10.in-addr.arpa	IN	NS	semerub12.pw.
+106			IN	PTR	semerub12.pw.	;BYTE KE-4 MALANG
+
+service bind9 restart
+
+
+------------------GRESIK
+host -t PTR 10.151.83.106
+
+
+
+
+5 ###############
+------------------MALANG
+nano /etc/bind/named.conf.local
+zone "jarkom2020.com" {
+    type master;
+    notify yes;
+    also-notify { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
+    allow-transfer { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
+    file "/etc/bind/jarkom/jarkom2020.com";
+};
+zone "83.151.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
+};
+
+service bind9 restart
+
+
+------------------MOJOKERTO
+apt-get update
+apt-get install bind9 -y
+
+nano /etc/bind/named.conf.local
+zone "jarkom2020.com" {
+    type slave;
+    masters { "IP MALANG"; }; // Masukan IP MALANG tanpa tanda petik
+    file "/var/lib/bind/jarkom2020.com";
+};
+
+service bind9 restart
+
+
+-----------------MALANG
+service bind9 stop
+
+
+------------------GRESIK
+nano /etc/resolv.conf
+nameserver 10.151.83.106	#IP MALANG
+nameserver 10.151.83.107	#IP MOJOKERTO
+
+ping semerub12.pw
+
+
+
+6 ######################
+
+
