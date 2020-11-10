@@ -62,8 +62,7 @@ nameserver 10.151.71.162     #IP MALANG
 ```
    ![testestes](/ss/1-3.png)
     
-- Untuk mencoba koneksi DNS, lakukan ping domain semerub12.pw dengan melakukan perintah berikut pada client GRESIK dan SIDOARJO
-```ping semerub12.pw```
+- Untuk mencoba koneksi DNS, lakukan ping domain semerub12.pw dengan melakukan perintah berikut pada client GRESIK dan SIDOARJO ```ping semerub12.pw```
 </br></br></br>
 
 <a name="2"></a>
@@ -76,7 +75,7 @@ www	IN	CNAME	semerub12.pw.
 ![testestes](/ss/2-1.png)
 	
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
-- Lalu cek di GRESIK ```ping www.semerub12.pw```
+- Lalu cek di  client GRESIK ```ping www.semerub12.pw```
 ![testestes](/ss/2-ping.png)
 </br></br></br>
 
@@ -95,7 +94,7 @@ penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
 ![testestes](/ss/3-2.png)
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
-- Kemudian pada GRESIK lakukan testing ```ping penanjakan.semerub12.pw```
+- Kemudian pada client GRESIK lakukan testing ```ping penanjakan.semerub12.pw```
 ![testestes](/ss/3-ping.png)
 </br></br></br>
 
@@ -118,29 +117,37 @@ zone "83.151.10.in-addr.arpa" {
 ![testestes](/ss/4-2.png)
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
-- Untuk mengecek konfigurasi dapat melakukan perintah ```host -t PTR 10.151.83.106``` pada GRESIK
+- Untuk mengecek konfigurasi dapat melakukan perintah ```host -t PTR 10.151.83.106``` pada client GRESIK
 ![testestes](/ss/4-ping.png)
 </br></br></br>
 
 <a name="5"></a>
 ## SOAL NO 5
 ### DNS Server Slave pada MOJOKERTO agar Bibah tidak terganggu menikmati keindahan Semeru pada Website. Selain website utama Bibah juga meminta dibuatkan 
-MALANG
-nano /etc/bind/named.conf.local
+- Pada MALANG edit ```nano /etc/bind/named.conf.local```
+```
+zone "semerub12.pw" {
+    type master;
+    notify yes;
+    also-notify { 10.151.83.107; }; // IP MOJOKERTO
+    allow-transfer { 10.151.83.107; }; // MOJOKERTO
+    file "/etc/bind/jarkom/semerub12.pw";
+};
+```
 ![testestes](/ss/5-1.png)
-</br>
-MOJOKERTO
-apt-get update
-apt-get install bind9 -y
-nano /etc/bind/named.conf.local
-![testestes](/ss/5-2.png)
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
+- Buka MOJOKERTO dan update package lists dengan menjalankan command: ```apt-get update```
+- Kemudian install aplikasi bind9 pada MOJOKERTO ```apt-get install bind9 -y```
+- Edit file pada MOJOKERTO ```nano /etc/bind/named.conf.local```
+![testestes](/ss/5-2.png)
 
-nano /etc/resolv.conf
+- Kemudian restart bind9 pada MOJOKERTO dengan perintah ```service bind9 restart```
+- Pada sever MALANG matikan service bind9 ```service bind9 stop```
+- Pada client GRESIK atur nameserver mengarah ke IP MALANG dan MOJOKERTO ```nano /etc/resolv.conf```
 ![testestes](/ss/5-3.png)
 
-ping semerub12.pw
+- Lakukan ```ping semerub12.pw``` pada client GRESIK
 ![testestes](/ss/5-ping.png)
 </br></br></br>
 
