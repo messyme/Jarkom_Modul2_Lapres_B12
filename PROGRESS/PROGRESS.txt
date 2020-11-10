@@ -1,0 +1,9 @@
+topologi.sh done
+bye.sh done
+uncomment net.ipv4.ip_forward=1 di nano /etc/sysctl.conf done
+edit /etc/network/interfaces di surabaya
+edit /etc/network/interfaces di malang
+edit /etc/network/interfaces di mojokerto
+edit /etc/network/interfaces di sidoarjo
+edit /etc/network/interfaces di gresik
+edit /etc/network/interfaces di probolinggo

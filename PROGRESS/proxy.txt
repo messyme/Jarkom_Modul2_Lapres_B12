@@ -1,0 +1,3 @@
+export http_proxy=http://DPTSI-562913-a663c:514cb@proxy.its.ac.id:8080
+export https_proxy=http://DPTSI-562913-a663c:514cb@proxy.its.ac.id:8080
+export ftp_proxy=http://DPTSI-562913-a663c:514cb@proxy.its.ac.id:8080
