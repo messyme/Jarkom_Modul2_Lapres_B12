@@ -73,6 +73,7 @@ ping semerub12.pw
 
 2 ###############
 ------------------MALANG
+nano /etc/bind/jarkom/semerub12.pw
 $TTL	604800
 @	IN	SOA	semerub12.pw. root.semerub12.pw. (
 				2	; Serial

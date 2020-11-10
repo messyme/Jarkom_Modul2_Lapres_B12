@@ -40,21 +40,31 @@
 ## SOAL NO 1
 ### membuat sebuah website utama dengan alamat http://semerub12.pw yang memiliki
 - Buka MALANG dan update package lists dengan menjalankan command: ```apt-get update```
-- Install aplikasi bind9 pada MALANG
-nano /etc/bind/named.conf.local
-![testestes](/ss/1-1.png)
+- Install aplikasi bind9 pada MALANG ```apt-get install bind9 -y```
+- Pada MALANG lakukan perintah ```nano /etc/bind/named.conf.local```
+- Konfigurasi domain semerub12.pw berisi:
+```
+zone "semerub12.pw" {
+	type master;
+	file "/etc/bind/jarkom/semerub12.pw";
+};
+```
+    ![testestes](/ss/1-1.png)
 </br>
-mkdir /etc/bind/jarkom
-cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw
-nano /etc/bind/jarkom/semerub12.pw
+- Buat folder ```jarkom``` pada direktori ```/etc/bind``` : ```mkdir /etc/bind/jarkom```
+- Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: ```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
+- Buka dan edit file semerub12.pw dengan perintah ```nano /etc/bind/jarkom/semerub12.pw```
 ![testestes](/ss/1-2.png)
 </br>
-service bind9 restart
-nano /etc/resolv.conf
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+- Pada client GRESIK dan SIDOARJO arahkan nameserver menuju IP MALANG dengan mengedit file resolve.conf dengan perintah ```nano /etc/resolv.conf```
+```
 nameserver 10.151.71.162     #IP MALANG
+```
 ![testestes](/ss/1-3.png)
 </br>
-ping semerub12.pw
+- Untuk mencoba koneksi DNS, lakukan ping domain semerub12.pw dengan melakukan perintah berikut pada client GRESIK dan SIDOARJO
+```ping semerub12.pw```
 </br></br></br>
 
 <a name="2"></a>
@@ -62,6 +72,7 @@ ping semerub12.pw
 ### alias http://www.semerub12.pw
 nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/2-1.png)
+service bind9 restart
 </br>
 ping www.semerub12.pw
 ![testestes](/ss/2-ping.png)
