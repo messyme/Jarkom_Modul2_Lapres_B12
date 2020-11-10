@@ -111,7 +111,7 @@ www	IN	CNAME	semerub12.pw.
 penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
 
 nano /etc/bind/named.conf.local
-zone "jarkom2020.com" {
+zone "semerub12.pw" {
     type master;
     notify yes;
     also-notify { 10.151.83.108; }; // IP PROBOLINGGO
@@ -130,11 +130,11 @@ ping penanjakan.semerub12.pw
 4 ###############
 ------------------MALANG
 nano /etc/bind/named.conf.local
-zone "jarkom2020.com" {
+zone "semerub12.pw" {
     type master;
     notify yes;
-    also-notify { 10.151.83.108; }; // IP PROBOLINGGO
-    allow-transfer { 10.151.83.108; }; // IP PROBOLINGGO
+    also-notify { 10.151.83.107; }; // IP MOJOKERTO
+    allow-transfer { 10.151.83.107; }; // MOJOKERTO
     file "/etc/bind/jarkom/semerub12.pw";
 };
 
@@ -161,6 +161,10 @@ service bind9 restart
 
 
 ------------------GRESIK
+nano /etc/resolv.conf
+nameserver 10.151.83.106	#IP MALANG
+nameserver 10.151.83.107	#IP MOJOKERTO
+
 host -t PTR 10.151.83.106
 
 
@@ -169,13 +173,14 @@ host -t PTR 10.151.83.106
 5 ###############
 ------------------MALANG
 nano /etc/bind/named.conf.local
-zone "jarkom2020.com" {
+zone "semerub12.pw" {
     type master;
     notify yes;
-    also-notify { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
-    allow-transfer { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
-    file "/etc/bind/jarkom/jarkom2020.com";
+    also-notify { 10.151.83.107; }; // IP MOJOKERTO
+    allow-transfer { 10.151.83.107; }; // MOJOKERTO
+    file "/etc/bind/jarkom/semerub12.pw";
 };
+
 zone "83.151.10.in-addr.arpa" {
     type master;
     file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
@@ -189,10 +194,10 @@ apt-get update
 apt-get install bind9 -y
 
 nano /etc/bind/named.conf.local
-zone "jarkom2020.com" {
+zone "semerub12.pw" {
     type slave;
-    masters { "IP MALANG"; }; // Masukan IP MALANG tanpa tanda petik
-    file "/var/lib/bind/jarkom2020.com";
+    masters { 10.151.83.107; }; // IP MALANG
+    file "/var/lib/bind/semerub12.pw";
 };
 
 service bind9 restart
