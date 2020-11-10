@@ -130,6 +130,14 @@ ping penanjakan.semerub12.pw
 4 ###############
 ------------------MALANG
 nano /etc/bind/named.conf.local
+zone "jarkom2020.com" {
+    type master;
+    notify yes;
+    also-notify { 10.151.83.108; }; // IP PROBOLINGGO
+    allow-transfer { 10.151.83.108; }; // IP PROBOLINGGO
+    file "/etc/bind/jarkom/semerub12.pw";
+};
+
 zone "83.151.10.in-addr.arpa" {
     type master;
     file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
