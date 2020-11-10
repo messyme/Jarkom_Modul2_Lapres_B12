@@ -167,6 +167,7 @@ naik	IN	NS	gunung
 - Edit ```nano /etc/bind/named.conf.options```
 - Comment kan ```//dnssec-validation auto;```
 - Tambahkan ```allow-query{any;};```
+
 ![testestes](/ss/6-2.png)
 
 - Edit ```nano /etc/bind/named.conf.local```
@@ -186,6 +187,7 @@ zone "semerub12.pw" {
 - Edit ```nano /etc/bind/named.conf.options```
 - Comment kan ```//dnssec-validation auto;```
 - Tambahkan ```allow-query{any;};```
+
 ![testestes](/ss/6-4.png)
 
 - Edit file ```nano /etc/bind/named.conf.local```
