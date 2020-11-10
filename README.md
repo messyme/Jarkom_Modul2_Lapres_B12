@@ -50,21 +50,16 @@ zone "semerub12.pw" {
 };
 ```
     ![testestes](/ss/1-1.png)
-- Buat folder ```jarkom``` pada direktori ```/etc/bind``` : 
-```mkdir /etc/bind/jarkom```
-- Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: 
-```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
-- Buka dan edit file semerub12.pw dengan perintah 
-```nano /etc/bind/jarkom/semerub12.pw```
-![testestes](/ss/1-2.png)
-</br>
+- Buat folder ```jarkom``` pada direktori ```/etc/bind``` : ```mkdir /etc/bind/jarkom```
+- Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: ```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
+- Buka dan edit file semerub12.pw dengan perintah ```nano /etc/bind/jarkom/semerub12.pw```
+    ![testestes](/ss/1-2.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 - Pada client GRESIK dan SIDOARJO arahkan nameserver menuju IP MALANG dengan mengedit file resolve.conf dengan perintah ```nano /etc/resolv.conf```
 ```
 nameserver 10.151.71.162     #IP MALANG
 ```
-![testestes](/ss/1-3.png)
-</br>
+    ![testestes](/ss/1-3.png)
 - Untuk mencoba koneksi DNS, lakukan ping domain semerub12.pw dengan melakukan perintah berikut pada client GRESIK dan SIDOARJO
 ```ping semerub12.pw```
 </br></br></br>
@@ -72,7 +67,6 @@ nameserver 10.151.71.162     #IP MALANG
 <a name="2"></a>
 ## SOAL NO 2
 ### alias http://www.semerub12.pw
-- Buka file semerub12.pw pada server MALANG
 nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/2-1.png)
 service bind9 restart
