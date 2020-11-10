@@ -49,17 +49,19 @@ zone "semerub12.pw" {
 	file "/etc/bind/jarkom/semerub12.pw";
 };
 ```
-    ![testestes](/ss/1-1.png)
+   ![testestes](/ss/1-1.png)
 - Buat folder ```jarkom``` pada direktori ```/etc/bind``` : ```mkdir /etc/bind/jarkom```
 - Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: ```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
 - Buka dan edit file semerub12.pw dengan perintah ```nano /etc/bind/jarkom/semerub12.pw```
     ![testestes](/ss/1-2.png)
+    
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 - Pada client GRESIK dan SIDOARJO arahkan nameserver menuju IP MALANG dengan mengedit file resolve.conf dengan perintah ```nano /etc/resolv.conf```
 ```
 nameserver 10.151.71.162     #IP MALANG
 ```
-    ![testestes](/ss/1-3.png)
+   ![testestes](/ss/1-3.png)
+    
 - Untuk mencoba koneksi DNS, lakukan ping domain semerub12.pw dengan melakukan perintah berikut pada client GRESIK dan SIDOARJO
 ```ping semerub12.pw```
 </br></br></br>
@@ -67,11 +69,14 @@ nameserver 10.151.71.162     #IP MALANG
 <a name="2"></a>
 ## SOAL NO 2
 ### alias http://www.semerub12.pw
-nano /etc/bind/jarkom/semerub12.pw
+- Menambahkan konfigurasi pada server MALANG di dalam dile semerub12.pw ```nano /etc/bind/jarkom/semerub12.pw```
+```
+www	IN	CNAME	semerub12.pw.
+```
 ![testestes](/ss/2-1.png)
-service bind9 restart
-</br>
-ping www.semerub12.pw
+	
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+- Lalu cek pada GRESIK ```ping www.semerub12.pw```
 ![testestes](/ss/2-ping.png)
 </br></br></br>
 
@@ -80,10 +85,11 @@ ping www.semerub12.pw
 ### subdomain http://penanjakan.semerub12.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO serta dibuatkan
 nano /etc/bind/jarkom/semerub12.pw
 ![testestes](/ss/3-1.png)
-</br>
+
 nano /etc/bind/named.conf.local
 ![testestes](/ss/3-2.png)
-</br>
+
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
 ping penanjakan.semerub12.pw
 ![testestes](/ss/3-ping.png)
 </br></br></br>
@@ -93,11 +99,12 @@ ping penanjakan.semerub12.pw
 ### reverse domain untuk domain utama. Untuk mengantisipasi server dicuri/rusak, Bibah minta dibuatkan
 nano /etc/bind/named.conf.local
 ![testestes](/ss/4-1.png)
-</br>
+
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
 cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa
 nano /etc/bind/jarkom/83.151.10.in-addr.arpa
 ![testestes](/ss/4-2.png)
-</br>
+
 host -t PTR 10.151.83.106
 ![testestes](/ss/4-ping.png)
 </br></br></br>
@@ -114,11 +121,12 @@ apt-get update
 apt-get install bind9 -y
 nano /etc/bind/named.conf.local
 ![testestes](/ss/5-2.png)
-service bind9 restart
-</br>
+
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+
 nano /etc/resolv.conf
 ![testestes](/ss/5-3.png)
-</br>
+
 ping semerub12.pw
 ![testestes](/ss/5-ping.png)
 </br></br></br>
@@ -127,14 +135,15 @@ ping semerub12.pw
 ## SOAL NO 6
 ### subdomain dengan alamat http://gunung.semerub12.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO. Bibah juga ingin memberi petunjuk mendaki gunung semeru kepada anggota komunitas sehingga dia meminta dibuatkan 
 ![testestes](/ss/6-1.png)
-</br>
+
 ![testestes](/ss/6-2.png)
-</br>
+
 ![testestes](/ss/6-3.png)
-</br>
+
 ![testestes](/ss/6-4.png)
-</br>
+
 ![testestes](/ss/6-ping.png)
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
 </br></br></br>
 
 <a name="7"></a>
