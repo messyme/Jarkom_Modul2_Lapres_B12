@@ -7,3 +7,9 @@ edit /etc/network/interfaces di mojokerto
 edit /etc/network/interfaces di sidoarjo
 edit /etc/network/interfaces di gresik
 edit /etc/network/interfaces di probolinggo
+no 1 done
+no 2 done
+no 3 done
+no 4 done
+no 5 done
+no 6 done
