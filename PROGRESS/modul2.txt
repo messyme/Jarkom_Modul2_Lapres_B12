@@ -110,8 +110,16 @@ $TTL	604800
 www	IN	CNAME	semerub12.pw.
 penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
 
-service bind9 restart
+nano /etc/bind/named.conf.local
+zone "jarkom2020.com" {
+    type master;
+    notify yes;
+    also-notify { 10.151.83.108; }; // IP PROBOLINGGO
+    allow-transfer { 10.151.83.108; }; // IP PROBOLINGGO
+    file "/etc/bind/jarkom/semerub12.pw";
+};
 
+service bind9 restart
 
 ----------------GRESIK
 ping penanjakan.semerub12.pw
@@ -130,6 +138,14 @@ zone "83.151.10.in-addr.arpa" {
 cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa
 
 nano /etc/bind/jarkom/83.151.10.in-addr.arpa
+$TTL	604800
+@	IN	SOA	semerub12.pw. root.semerub12.pw. (
+				2	; Serial
+				604800	; Refresh
+				86400	; Retry
+				2419200	; Expire
+				604800)	; Negative Cache TTL
+;
 83.151.10.in-addr.arpa	IN	NS	semerub12.pw.
 106			IN	PTR	semerub12.pw.	;BYTE KE-4 MALANG
 
