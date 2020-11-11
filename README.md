@@ -242,13 +242,13 @@ $TTL	604800
 <a name="10"></a>
 ### SOAL NO 10
 ### Web http://penanjakan.semerub12.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semerub12.pw dan memiliki struktur folder sebagai berikut:
-	```
+```
 	/var/www/penanjakan.semerub12.pw
  	/public/javascripts
  	/public/css
  	/public/images
 	/errors
-	```
+```
 ![testestes](/ss/10-1.png)
 ![testestes](/ss/10-2.png)
 </br></br></br>
