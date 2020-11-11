@@ -1,0 +1,9 @@
+host name putty 10.151.36.202
+NID TUNTAP 10.151.74.52
+NID DMZ 10.151.83.104
+IP eth0 surabaya 10.151.74.54
+IP tuntap 10.151.74.53
+IP eth1 surabaya 10.151.83.105
+IP Malang 10.151.83.106
+IP Mojokerto 10.151.83.107
+IP Probolinggo 10.151.83.108

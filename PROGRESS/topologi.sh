@@ -3,7 +3,7 @@ uml_switch -unix switch1 > /dev/null < /dev/null &
 uml_switch -unix switch2 > /dev/null < /dev/null &
 
 # Router
-xterm -T SURABAYA -e linux ubd0=SURABAYA,jarkom umid=SURABAYA eth0=tuntap,,,10.151.74.52 eth1=daemon,,,switch2 eth2=daemon,,,switch1 mem=96M &
+xterm -T SURABAYA -e linux ubd0=SURABAYA,jarkom umid=SURABAYA eth0=tuntap,,,10.151.74.53 eth1=daemon,,,switch2 eth2=daemon,,,switch1 mem=96M &
 
 # Server
 xterm -T MALANG -e linux ubd0=MALANG,jarkom umid=MALANG eth0=daemon,,,switch2 mem=128M &
