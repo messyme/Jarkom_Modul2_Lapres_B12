@@ -223,57 +223,77 @@ $TTL	604800
 <a name="7"></a>
 ## SOAL NO 7
 ### subdomain dengan nama http://naik.gunung.semerub12.pw, domain ini diarahkan ke IP Server PROBOLINGGO. Setelah selesai membuat keseluruhan domain, kamu diminta untuk segera mengatur web server.
+![testestes](/ss/7-ping.png)
 </br></br></br>
 
 <a name="8"></a>
 ### SOAL NO 8
 ### Domain http://semerub12.pw memiliki DocumentRoot pada /var/www/semerub12.pw. Awalnya web dapat diakses menggunakan alamat http://semerub12.pw/index.php/home . Karena dirasa alamat urlnya kurang bagus, maka
+![testestes](/ss/8.png)
 </br></br></br>
 
 <a name="9"></a>
 ### SOAL NO 9
 ### diaktifkan mod rewrite agar urlnya menjadi http://semerub12.pw/home.
+![testestes](/ss/9-1.png)
+![testestes](/ss/9-2.png)
 </br></br></br>
 
 <a name="10"></a>
 ### SOAL NO 10
 ### Web http://penanjakan.semerub12.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semerub12.pw dan memiliki struktur folder sebagai berikut:
+```
 ### /var/www/penanjakan.semerub12.pw
 ### /public/javascripts
 ### /public/css
 ### /public/images
 ### /errors
+```
+![testestes](/ss/10-1.png)
+![testestes](/ss/10-2.png)
 </br></br></br>
 
 <a name="11"></a>
 ### SOAL NO 11
 ### Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan.
+![testestes](/ss/11.png)
+![testestes](/ss/11-1.png)
 </br></br></br>
 
 <a name="12"></a>
 ### SOAL NO 12
 ### Untuk mengatasi HTTP Error code 404, disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache.
+![testestes](/ss/12-1.png)
+![testestes](/ss/12.png)
 </br></br></br>
 
 <a name="13"></a>
 ### SOAL NO 13
 ### Untuk mengakses file assets javascript awalnya harus menggunakan url http://penanjakan.semerub12.pw/public/javascripts. Karena terlalu panjang maka dibuatkan konfigurasi virtual host agar ketika mengakses file assets menjadi http://penanjakan.semerub12.pw/js. Untuk web http://gunung.semerub12.pw belum dapat dikonfigurasi pada web server karena menunggu pengerjaan website selesai. 
+![testestes](/ss/13.png)
+![testestes](/ss/13-1.png)
 </br></br></br>
 
 
 <a name="14"></a>
 ### SOAL NO 14
 ### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw. Dikarenakan web http://naik.gunung.semeruyyy.pw bersifat private 
+![testestes](/ss/14-1.png)
+![testestes](/ss/14-2.png)
+![testestes](/ss/14.png)
 </br></br></br>
 
 <a name="15"></a>
 ### SOAL NO 15
 ### Bibah meminta kamu membuat web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semeruyyy.pw melainkan laman  default Apache yang bertuliskan “It works!”.
+![testestes](/ss/15-1.png)
 </br></br></br>
 
 <a name="16"></a>
 ### SOAL NO 16
 ### Karena dirasa kurang profesional, maka setiap Bibah mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw.
+![testestes](/ss/16.png)
+![testestes](/ss/16-1.png)
 </br></br></br>
 
 <a name="17"></a>
