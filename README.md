@@ -242,13 +242,13 @@ $TTL	604800
 <a name="10"></a>
 ### SOAL NO 10
 ### Web http://penanjakan.semerub12.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semerub12.pw dan memiliki struktur folder sebagai berikut:
-```
-### /var/www/penanjakan.semerub12.pw
-### /public/javascripts
-### /public/css
-### /public/images
-### /errors
-```
+	```
+	/var/www/penanjakan.semerub12.pw
+ 	/public/javascripts
+ 	/public/css
+ 	/public/images
+	/errors
+	```
 ![testestes](/ss/10-1.png)
 ![testestes](/ss/10-2.png)
 </br></br></br>
@@ -277,7 +277,7 @@ $TTL	604800
 
 <a name="14"></a>
 ### SOAL NO 14
-### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw. Dikarenakan web http://naik.gunung.semeruyyy.pw bersifat private 
+### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semerub12.pw. Dikarenakan web http://naik.gunung.semerub12.pw bersifat private 
 ![testestes](/ss/14-1.png)
 ![testestes](/ss/14-2.png)
 ![testestes](/ss/14.png)
@@ -285,18 +285,18 @@ $TTL	604800
 
 <a name="15"></a>
 ### SOAL NO 15
-### Bibah meminta kamu membuat web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semeruyyy.pw melainkan laman  default Apache yang bertuliskan “It works!”.
+### Bibah meminta kamu membuat web http://naik.gunung.semerub12.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semeru12.pw melainkan laman  default Apache yang bertuliskan “It works!”.
 ![testestes](/ss/15-1.png)
 </br></br></br>
 
 <a name="16"></a>
 ### SOAL NO 16
-### Karena dirasa kurang profesional, maka setiap Bibah mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw.
+### Karena dirasa kurang profesional, maka setiap Bibah mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semerub12.pw.
 ![testestes](/ss/16.png)
 ![testestes](/ss/16-1.png)
 </br></br></br>
 
 <a name="17"></a>
 ### SOAL NO 17
-### Karena pengunjung pada /var/www/penanjakan.semeruyyy.pw/public/images sangat banyak maka semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
+### Karena pengunjung pada /var/www/penanjakan.semerub12.pw/public/images sangat banyak maka semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
 </br></br></br>
