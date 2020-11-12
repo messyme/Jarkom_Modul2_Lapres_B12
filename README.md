@@ -372,6 +372,13 @@ zone "semerub12.pw" {
 <a name="15"></a>
 ### SOAL NO 15
 ### Bibah meminta kamu membuat web http://naik.gunung.semerub12.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semerub12.pw melainkan laman  default Apache yang bertuliskan “It works!”.
+- Install apache utilities package dengan:
+```
+apt-get update
+apt-get install apache2 apache2-utils
+```
+- Buat file password
+- Kemudian masukan username dan password dengan perintah ```htpasswd -c /etc/apache2/.htpasswd semeru```
 ![testestes](/ss/15-1.png)
 </br></br></br>
 
@@ -385,7 +392,14 @@ zone "semerub12.pw" {
 <a name="17"></a>
 ### SOAL NO 17
 ### Karena pengunjung pada /var/www/penanjakan.semerub12.pw/public/images sangat banyak maka semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
+- Pindah ke directory ```/var/www/penanjakan.semerub12.pw```
+- Tambahkan ```AllowOvrride All``` untuk directory ```/var/www/penanjakan.semerub12.pw/public/images```
 ![testestes](/ss/17-1.png)
+
+- Buat isi file ```.htaccess``` seperti gambar: 
 ![testestes](/ss/17-2.png)
+
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Buka browser dan akses https://penanjakan.semerub12.pw/public/images maka hasilnya semua akses file gambar yang mengandung semeru akan diarahkan ke semeru.jpg
 ![testestes](/ss/17-3.png)
 </br></br></br>
