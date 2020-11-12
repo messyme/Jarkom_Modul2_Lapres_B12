@@ -5,6 +5,7 @@
 
 
 ## Daftar Isi
+### DNS
   1. [Nomor 1](#1)
   2. [Nomor 2](#2)
   3. [Nomor 3](#3)
@@ -12,6 +13,7 @@
   5. [Nomor 5](#5)
   6. [Nomor 6](#6)
   7. [Nomor 7](#7)
+### Web Server
   8. [Nomor 8](#8)
   9. [Nomor 9](#9)
   10. [Nomor 10](#10)
