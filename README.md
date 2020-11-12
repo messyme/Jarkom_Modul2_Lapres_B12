@@ -230,10 +230,10 @@ zone "semerub12.pw" {
 - Kemudian ubah DocumentRoot menjadi ```/var/www/semerub12.pw```
 ![testestes](/ss/8-1.png)
 
-- Gunakan perintah ```a2ensite semerub12.pw```
-- Gunakan perintah ```service apache2 restart```
+- Gunakan perintah ```a2ensite semerub12.pw``` untuk mengaktifkan konfigurasi semerub12.pw
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
 - Pindah ke directory ```/var/www```
-- Gunakan perintah ```wget 10.151.36.202/semeru.pw.zip```
+- Gunakan perintah ```wget 10.151.36.202/semeru.pw.zip``` untuk mendownload file
 - Unzip file kemudian rename menjadi ```semerub12.pw```
 - Buka browser dan akses https://semerub12.pw
 ![testestes](/ss/8.png)
@@ -242,7 +242,20 @@ zone "semerub12.pw" {
 <a name="9"></a>
 ### SOAL NO 9
 ### diaktifkan mod rewrite agar urlnya menjadi http://semerub12.pw/home.
+- Jalankan perintah ```a2enmod rewrite``` untuk mengaktifkan module rewrite.
+- Restart apache dengan perintah ```service apache2 restart```
+- Pindah ke directory ```/var/www/semerub12.pw``` dan buat file ```.htaccess``` dengan isi file:
 ![testestes](/ss/9-1.png)
+
+- Pindah ke directory ```/etc/apache2/sites-available``` kemudian buka file ```semerub12.pw``` dan tambahkan
+```
+<Directory /var/www/semerub12.pw>
+     Options +FollowSymLinks -Multiviews
+     AllowOverride All
+ </Directory>
+```
+- Restart apache dengan perintah ```service apache2 restart```
+- Buka browser dan akses https://semerub12.pw/home
 ![testestes](/ss/9-2.png)
 </br></br></br>
 
@@ -256,8 +269,24 @@ zone "semerub12.pw" {
  	/public/images
 	/errors
 ```
+- Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
+- Copy file default menjadi file ```penanjakan.semerub12.pw```
+- Buka file penanjakan.semerub12.pw, lalu tambahkan
+```
+ ServerName penanjakan.semerub12.pw
+ ServerAlias www.penanjakan.semerub12.pw
+```
+- Kemudian ubah DocumentRoot menjadi ```/var/www/penanjakan.semerub12.pw```
 ![testestes](/ss/10-3.png)
+
+- Gunakan perintah ```a2ensite penanjakan.semerub12.pw``` untuk mengaktifkan konfigurasi semerub12.pw
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Pindah ke directory ```/var/www```
+- Gunakan perintah ```wget 10.151.36.202/penanjakan.semeru.pw.zip``` untuk mendownload file
+- Unzip file kemudian rename menjadi ```penanjakan.semerub12.pw```
+- Buka browser dan akses https://penanjakan.semerub12.pw
 ![testestes](/ss/10-1.png)
+- Ketika membukan folder ```public```
 ![testestes](/ss/10-2.png)
 </br></br></br>
 
