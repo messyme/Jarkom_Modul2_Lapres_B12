@@ -384,7 +384,8 @@ apt-get install apache2 apache2-utils
 ```
 - Buat file password
 - Kemudian masukan username ```semeru``` dan password ```kuynaikgunung``` dengan perintah ```htpasswd -c /etc/apache2/.htpasswd semeru```
-![testestes](/ss/15-1.png)
+
+	![testestes](/ss/15-1.png)
 
 - Edit file ```etc/apache2/sites-enabled/naik.gunung.semerub12.pw``` untuk menambahkan Auth, seperti:
 ```
