@@ -213,14 +213,29 @@ zone "semerub12.pw" {
 ![testestes](/ss/7-1.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
-- Lakukan testing ```ping gunung.semerub12.pw```
+- Lakukan testing ```ping naik.gunung.semerub12.pw```
 ![testestes](/ss/7.png)
 </br></br></br>
 
 <a name="8"></a>
 ### SOAL NO 8
 ### Domain http://semerub12.pw memiliki DocumentRoot pada /var/www/semerub12.pw. Awalnya web dapat diakses menggunakan alamat http://semerub12.pw/index.php/home . Karena dirasa alamat urlnya kurang bagus, maka
+- Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
+- Copy file default menjadi file ```semerub12.pw```
+- Buka file semerub12.pw, lalu tambahkan
+```
+ ServerName semerub12.pw
+ ServerAlias www.semerub12.pw
+```
+- Kemudian ubah DocumentRoot menjadi ```/var/www/semerub12.pw```
 ![testestes](/ss/8-1.png)
+
+- Gunakan perintah ```a2ensite semerub12.pw```
+- Gunakan perintah ```service apache2 restart```
+- Pindah ke directory ```/var/www```
+- Gunakan perintah ```wget 10.151.36.202/semeru.pw.zip```
+- Unzip file kemudian rename menjadi ```semerub12.pw```
+- Buka browser dan akses https://semerub12.pw
 ![testestes](/ss/8.png)
 </br></br></br>
 
