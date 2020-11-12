@@ -50,7 +50,8 @@ zone "semerub12.pw" {
 };
 ```
    ![testestes](/ss/1-1.png)
-- Buat folder ```jarkom``` pada direktori ```/etc/bind``` : ```mkdir /etc/bind/jarkom```
+   
+- Buat folder ```jarkom``` pada directory ```/etc/bind``` : ```mkdir /etc/bind/jarkom```
 - Salin file ```db.local``` pada ```/etc/bind``` ke dalam  folder jarkom dengan perintah: ```cp /etc/bind/db.local /etc/bind/jarkom/semerub12.pw```
 - Buka dan edit file semerub12.pw dengan perintah ```nano /etc/bind/jarkom/semerub12.pw```
     ![testestes](/ss/1-2.png)
@@ -68,7 +69,7 @@ nameserver 10.151.71.162     #IP MALANG
 <a name="2"></a>
 ## SOAL NO 2
 ### alias http://www.semerub12.pw
-- Menambahkan konfigurasi pada server MALANG di dalam dile semerub12.pw ```nano /etc/bind/jarkom/semerub12.pw```
+- Menambahkan konfigurasi pada server MALANG di dalam file semerub12.pw ```nano /etc/bind/jarkom/semerub12.pw```
 ```
 www	IN	CNAME	semerub12.pw.
 ```
@@ -82,7 +83,7 @@ www	IN	CNAME	semerub12.pw.
 <a name="3"></a>
 ## SOAL NO 3
 ### subdomain http://penanjakan.semerub12.pw yang diatur DNS-nya pada MALANG dan mengarah ke IP Server PROBOLINGGO serta dibuatkan
-- edit file semeru.pw pada MALANG ```nano /etc/bind/jarkom/semerub12.pw```
+- Edit file semeru.pw pada MALANG ```nano /etc/bind/jarkom/semerub12.pw```
 ```
 @	IN	A	10.151.83.108	; IP PROBOLINGGO
 www	IN	CNAME	semerub12.pw.
@@ -90,7 +91,7 @@ penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
 ```
 ![testestes](/ss/3-1.png)
 
-- edit ```nano /etc/bind/named.conf.local```
+- Edit ```nano /etc/bind/named.conf.local```
 ![testestes](/ss/3-2.png)
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
@@ -195,7 +196,7 @@ zone "semerub12.pw" {
 ```
 ![testestes](/ss/6-2.png)
 
-- Buat direktori delegasi ```mkdir /etc/bind/delegasi```
+- Buat directory delegasi ```mkdir /etc/bind/delegasi```
 - Copykan db.local ke dalam gunung.semeru.b12.pw ```cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub12.pw```
 - Edit ```nano /etc/bind/delegasi/gunung.semerub12.pw``` menjadi seperti gambar di bawah
 ![testestes](/ss/6-3.png)
@@ -213,21 +214,49 @@ zone "semerub12.pw" {
 ![testestes](/ss/7-1.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
-- Lakukan testing ```ping gunung.semerub12.pw```
+- Lakukan testing ```ping naik.gunung.semerub12.pw```
 ![testestes](/ss/7.png)
 </br></br></br>
 
 <a name="8"></a>
 ### SOAL NO 8
 ### Domain http://semerub12.pw memiliki DocumentRoot pada /var/www/semerub12.pw. Awalnya web dapat diakses menggunakan alamat http://semerub12.pw/index.php/home . Karena dirasa alamat urlnya kurang bagus, maka
+- Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
+- Copy file default menjadi file ```semerub12.pw```
+- Buka file semerub12.pw, lalu tambahkan
+```
+ ServerName semerub12.pw
+ ServerAlias www.semerub12.pw
+```
+- Kemudian ubah DocumentRoot menjadi ```/var/www/semerub12.pw```
 ![testestes](/ss/8-1.png)
+
+- Gunakan perintah ```a2ensite semerub12.pw``` untuk mengaktifkan konfigurasi semerub12.pw
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Pindah ke directory ```/var/www```
+- Gunakan perintah ```wget 10.151.36.202/semeru.pw.zip``` untuk mendownload file
+- Unzip file kemudian rename menjadi ```semerub12.pw```
+- Buka browser dan akses https://semerub12.pw
 ![testestes](/ss/8.png)
 </br></br></br>
 
 <a name="9"></a>
 ### SOAL NO 9
 ### diaktifkan mod rewrite agar urlnya menjadi http://semerub12.pw/home.
+- Jalankan perintah ```a2enmod rewrite``` untuk mengaktifkan module rewrite.
+- Restart apache dengan perintah ```service apache2 restart```
+- Pindah ke directory ```/var/www/semerub12.pw``` dan buat file ```.htaccess``` dengan isi file:
 ![testestes](/ss/9-1.png)
+
+- Pindah ke directory ```/etc/apache2/sites-available``` kemudian buka file ```semerub12.pw``` dan tambahkan
+```
+<Directory /var/www/semerub12.pw>
+     Options +FollowSymLinks -Multiviews
+     AllowOverride All
+ </Directory>
+```
+- Restart apache dengan perintah ```service apache2 restart```
+- Buka browser dan akses https://semerub12.pw/home
 ![testestes](/ss/9-2.png)
 </br></br></br>
 
@@ -241,29 +270,72 @@ zone "semerub12.pw" {
  	/public/images
 	/errors
 ```
+- Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
+- Copy file default menjadi file ```penanjakan.semerub12.pw```
+- Buka file penanjakan.semerub12.pw, lalu tambahkan
+```
+ ServerName penanjakan.semerub12.pw
+ ServerAlias www.penanjakan.semerub12.pw
+```
+- Kemudian ubah DocumentRoot menjadi ```/var/www/penanjakan.semerub12.pw```
 ![testestes](/ss/10-3.png)
+
+- Gunakan perintah ```a2ensite penanjakan.semerub12.pw``` untuk mengaktifkan konfigurasi semerub12.pw
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Pindah ke directory ```/var/www```
+- Gunakan perintah ```wget 10.151.36.202/penanjakan.semeru.pw.zip``` untuk mendownload file
+- Unzip file kemudian rename menjadi ```penanjakan.semerub12.pw```
+- Buka browser dan akses https://penanjakan.semerub12.pw
 ![testestes](/ss/10-1.png)
+- Ketika membukan folder ```public```
 ![testestes](/ss/10-2.png)
 </br></br></br>
 
 <a name="11"></a>
 ### SOAL NO 11
 ### Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan.
+- Pindah ke directory ```etc/apache2/sites-available```
+- Kemudian buka file ```penanjakan.semerub12.pw```
+- Tambahkan
+```
+<Directory /var/www/penanjakan.semerub12.pw/public>
+     Options +Indexes
+ </Directory>
+ <DirectoryMatch ^/var/www/penanjakan.semerub12.pw/public/[a-z]>
+     Options -Indexes
+ </DirectoryMatch>
+```
 ![testestes](/ss/11.png)
+
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Hasil ketika membuka folder ```public```
+![testestes](/ss/10-2.png)
+- Hasil ketika membuka salah satu folder dalam folder public sebagai pengecekan
 ![testestes](/ss/11-1.png)
 </br></br></br>
 
 <a name="12"></a>
 ### SOAL NO 12
 ### Untuk mengatasi HTTP Error code 404, disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache.
+- Pindah ke directory ```etc/apache2/sites-available```
+- Kemudian buka file ```penanjakan.semerub12.pw```
+- Tambahkan ```ErrorDocument 404 /errors/404.html```
 ![testestes](/ss/12-1.png)
+
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Hasil:
 ![testestes](/ss/12.png)
 </br></br></br>
 
 <a name="13"></a>
 ### SOAL NO 13
 ### Untuk mengakses file assets javascript awalnya harus menggunakan url http://penanjakan.semerub12.pw/public/javascripts. Karena terlalu panjang maka dibuatkan konfigurasi virtual host agar ketika mengakses file assets menjadi http://penanjakan.semerub12.pw/js. Untuk web http://gunung.semerub12.pw belum dapat dikonfigurasi pada web server karena menunggu pengerjaan website selesai. 
+- Pindah ke directory ```etc/apache2/sites-available```
+- Kemudian buka file ```penanjakan.semerub12.pw```
+- Tambahkan ```Alias "/js" "/var/www/penanjakan.semerub12.pw/public/javascripts"```
 ![testestes](/ss/13.png)
+
+- Hasil
 ![testestes](/ss/13-1.png)
 </br></br></br>
 
@@ -271,14 +343,42 @@ zone "semerub12.pw" {
 <a name="14"></a>
 ### SOAL NO 14
 ### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semerub12.pw. Dikarenakan web http://naik.gunung.semerub12.pw bersifat private 
+- Buka file ```ports.conf```
+- Tambahkan ```port 8888```
 ![testestes](/ss/14-1.png)
+
+- Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
+- Copy file default menjadi file ```naik.gunung.semerub12.pw```
+- Buka file ```naik.gunung.semerub12.pw```
+- Setting virtual host di port 8888: ```<VirtualHost *:8888>
+- Lalu tambahkan 
+```
+ ServerName naik.gunung.semerub12.pw
+ ServerAlias www.naik.gunung.semerub12.pw
+```
+- Kemudian ubah DocumentRoot menjadi ```/var/www/naik.gunung.semerub12.pw```
 ![testestes](/ss/14-2.png)
+
+- Gunakan perintah ```a2ensite naik.gunung.semerub12.pw``` untuk mengaktifkan konfigurasi semerub12.pw
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Pindah ke directory ```/var/www```
+- Gunakan perintah ```wget 10.151.36.202/naik.gunung.semeru.pw.zip``` untuk mendownload file
+- Unzip file kemudian rename menjadi ```naik.gunung.semerub12.pw```
+
+- Akses ```naik.gunung.semerub12.pw:8888``` untuk mengakses/melihat hasil
 ![testestes](/ss/14.png)
 </br></br></br>
 
 <a name="15"></a>
 ### SOAL NO 15
-### Bibah meminta kamu membuat web http://naik.gunung.semerub12.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semeru12.pw melainkan laman  default Apache yang bertuliskan “It works!”.
+### Bibah meminta kamu membuat web http://naik.gunung.semerub12.pw agar diberi autentikasi password dengan username “semeru” dan password "kuynaikgunung” supaya aman dan tidak sembarang orang bisa mengaksesnya. Saat Bibah mengunjungi IP PROBOLINGGO, yang muncul bukan web utama http://semerub12.pw melainkan laman  default Apache yang bertuliskan “It works!”.
+- Install apache utilities package dengan:
+```
+apt-get update
+apt-get install apache2 apache2-utils
+```
+- Buat file password
+- Kemudian masukan username dan password dengan perintah ```htpasswd -c /etc/apache2/.htpasswd semeru```
 ![testestes](/ss/15-1.png)
 </br></br></br>
 
@@ -292,7 +392,14 @@ zone "semerub12.pw" {
 <a name="17"></a>
 ### SOAL NO 17
 ### Karena pengunjung pada /var/www/penanjakan.semerub12.pw/public/images sangat banyak maka semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
+- Pindah ke directory ```/var/www/penanjakan.semerub12.pw```
+- Tambahkan ```AllowOvrride All``` untuk directory ```/var/www/penanjakan.semerub12.pw/public/images```
 ![testestes](/ss/17-1.png)
+
+- Buat isi file ```.htaccess``` seperti gambar: 
 ![testestes](/ss/17-2.png)
+
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Buka browser dan akses https://penanjakan.semerub12.pw/public/images maka hasilnya semua akses file gambar yang mengandung semeru akan diarahkan ke semeru.jpg
 ![testestes](/ss/17-3.png)
 </br></br></br>
