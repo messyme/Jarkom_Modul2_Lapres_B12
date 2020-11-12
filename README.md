@@ -62,7 +62,7 @@ zone "semerub12.pw" {
 ```
 nameserver 10.151.71.162     #IP MALANG
 ```
-   ![testestes](/ss/1-3.png)
+- ![testestes](/ss/1-3.png)
     
 - Untuk mencoba koneksi DNS, lakukan ping domain semerub12.pw dengan melakukan perintah berikut pada client GRESIK dan SIDOARJO ```ping semerub12.pw```
 </br></br></br>
@@ -74,7 +74,8 @@ nameserver 10.151.71.162     #IP MALANG
 ```
 www	IN	CNAME	semerub12.pw.
 ```
-![testestes](/ss/2-1.png)
+
+- ![testestes](/ss/2-1.png)
 	
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 - Lalu cek di  client GRESIK ```ping www.semerub12.pw```
@@ -90,7 +91,7 @@ www	IN	CNAME	semerub12.pw.
 www	IN	CNAME	semerub12.pw.
 penanajakan	IN	A	10.151.83.108	; IP PROBOLINGGO
 ```
-![testestes](/ss/3-1.png)
+- ![testestes](/ss/3-1.png)
 
 - Edit ```nano /etc/bind/named.conf.local```
 ![testestes](/ss/3-2.png)
@@ -110,7 +111,7 @@ zone "83.151.10.in-addr.arpa" {
     file "/etc/bind/jarkom/83.151.10.in-addr.arpa";
 };
 ```
-![testestes](/ss/4-1.png)
+- ![testestes](/ss/4-1.png)
 
 
 - copykan file db.local ke dalam file 83.151.10.in-addr.arpa pada folder jarkom dengan perintah ```cp /etc/bind/db.local /etc/bind/jarkom/83.151.10.in-addr.arpa```
@@ -136,7 +137,7 @@ zone "semerub12.pw" {
     file "/etc/bind/jarkom/semerub12.pw";
 };
 ```
-![testestes](/ss/5-1.png)
+- ![testestes](/ss/5-1.png)
 
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 - Buka MOJOKERTO dan update package lists dengan menjalankan command: ```apt-get update```
@@ -163,7 +164,7 @@ zone "semerub12.pw" {
 gunung	IN	A	10.151.83.108	; IP PROBOLINGGO
 naik	IN	NS	gunung
 ```
-![testestes](/ss/6-1.png)
+- ![testestes](/ss/6-1.png)
 
 - Edit ```nano /etc/bind/named.conf.options```
 - Comment kan ```dnssec-validation auto;``` menjadi ```//dnssec-validation auto;```
@@ -179,7 +180,7 @@ zone "semerub12.pw" {
     file "/etc/bind/jarkom/semerub12.pw";
 };
 ```
-![testestes](/ss/6.png)
+- ![testestes](/ss/6.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
 #### MOJOKERTO
@@ -195,7 +196,7 @@ zone "semerub12.pw" {
     file "/var/lib/bind/gunung.semerub12.pw";
 };
 ```
-![testestes](/ss/6-2.png)
+- ![testestes](/ss/6-2.png)
 
 - Buat directory delegasi ```mkdir /etc/bind/delegasi```
 - Copykan db.local ke dalam gunung.semeru.b12.pw ```cp /etc/bind/db.local /etc/bind/delegasi/gunung.semerub12.pw```
@@ -214,7 +215,7 @@ zone "semerub12.pw" {
 ```
 naik	IN	A	10.151.83.108
 ```
-![testestes](/ss/7-1.png)
+- ![testestes](/ss/7-1.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
 - Lakukan testing ```ping naik.gunung.semerub12.pw```
@@ -308,7 +309,7 @@ naik	IN	A	10.151.83.108
      Options -Indexes
  </DirectoryMatch>
 ```
-![testestes](/ss/11.png)
+- ![testestes](/ss/11.png)
 
 - Gunakan perintah ```service apache2 restart``` untuk merestart apache
 - Hasil ketika membuka folder ```public```
@@ -382,22 +383,51 @@ apt-get update
 apt-get install apache2 apache2-utils
 ```
 - Buat file password
-- Kemudian masukan username dan password dengan perintah ```htpasswd -c /etc/apache2/.htpasswd semeru```
+- Kemudian masukan username ```semeru``` dan password ```kuynaikgunung``` dengan perintah ```htpasswd -c /etc/apache2/.htpasswd semeru```
+![testestes](/ss/15-1.png)
+
+- Edit file ```etc/apache2/sites-enabled/naik.gunung.semerub12.pw``` untuk menambahkan Auth, seperti:
+```
+<Directory /var/www/naik.semerub12.pw>
+     AuthType Basic
+     AuthName "Restricted Content"
+     AuthUserFile /etc/apache2/.htpasswd
+     Require valid-user
+ </Directory>
+```
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+- Buka browser dan akses ```naik.gunung.semerub12.pw:8888```
+- Masukkan username ```semeru``` dan password ```kuynaikgunung```, maka:
 ![testestes](/ss/15-1.png)
 </br></br></br>
 
 <a name="16"></a>
 ### SOAL NO 16
 ### Karena dirasa kurang profesional, maka setiap Bibah mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semerub12.pw.
-![testestes](/ss/16.png)
+- Buka browser dan akses ```10.151.83.108``` yang merupakan IP PROBOLINGGO untuk pengecekan awal
+![testestes](/ss/16-awal.png)
+- Pada PROBOLINGGO pindah ke directory ```/var/www/``` dan buat file ```.htacess``` dengan isi file
+```
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^10\.151\.83\.108$
+RewriteRule ^(.*)$ http://semerub12.pw/&1 [L,R=301]
+```
+
+- Buka file ```etc/apache2/sites-available/default```
+- Edit DocumentRoot menjadi ```/var/www/semerub12.pw```
+- Tambahkan ```Redirect / http://semerub12.pw```
 ![testestes](/ss/16-rev.png)
+- Gunakan perintah ```service apache2 restart``` untuk merestart apache
+
+- Buka browser dan akses ```10.151.83.108``` yang merupakan IP PROBOLINGGO
 ![testestes](/ss/16-1.png)
 </br></br></br>
 
 <a name="17"></a>
 ### SOAL NO 17
 ### Karena pengunjung pada /var/www/penanjakan.semerub12.pw/public/images sangat banyak maka semua request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
-- Pindah ke directory ```/var/www/penanjakan.semerub12.pw```
+- Pada PROBOLINGGO pindah ke directory ```/var/www/penanjakan.semerub12.pw```
 - Tambahkan ```AllowOvrride All``` untuk directory ```/var/www/penanjakan.semerub12.pw/public/images```
 ![testestes](/ss/17-1.png)
 
