@@ -210,7 +210,7 @@ zone "semerub12.pw" {
 ## SOAL NO 7
 ### subdomain dengan nama http://naik.gunung.semerub12.pw, domain ini diarahkan ke IP Server PROBOLINGGO. Setelah selesai membuat keseluruhan domain, kamu diminta untuk segera mengatur web server.
 - Pada MOJOKERTO edit ```nano /etc/bind/delegasi/gunung.semerub12.pw``` dan tambahkan 
-	```naik	IN	A	10.151.83.108```
+```naik	IN	A	10.151.83.108```
 ![testestes](/ss/7-1.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
@@ -345,6 +345,7 @@ zone "semerub12.pw" {
 ### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semerub12.pw. Dikarenakan web http://naik.gunung.semerub12.pw bersifat private 
 - Buka file ```ports.conf```
 - Tambahkan ```port 8888```
+
 ![testestes](/ss/14-1.png)
 
 - Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
@@ -386,6 +387,7 @@ apt-get install apache2 apache2-utils
 ### SOAL NO 16
 ### Karena dirasa kurang profesional, maka setiap Bibah mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semerub12.pw.
 ![testestes](/ss/16.png)
+![testestes](/ss/16-rev.png)
 ![testestes](/ss/16-1.png)
 </br></br></br>
 
@@ -396,7 +398,7 @@ apt-get install apache2 apache2-utils
 - Tambahkan ```AllowOvrride All``` untuk directory ```/var/www/penanjakan.semerub12.pw/public/images```
 ![testestes](/ss/17-1.png)
 
-- Buat isi file ```.htaccess``` seperti gambar: 
+- Buat isi file ```.htaccess``` seperti gambar:
 ![testestes](/ss/17-2.png)
 
 - Gunakan perintah ```service apache2 restart``` untuk merestart apache
