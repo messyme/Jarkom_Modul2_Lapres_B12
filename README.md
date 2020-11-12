@@ -346,8 +346,9 @@ naik	IN	A	10.151.83.108
 ### SOAL NO 14
 ### sedangkan web http://naik.gunung.semerub12.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semerub12.pw. Dikarenakan web http://naik.gunung.semerub12.pw bersifat private 
 - Buka file ```ports.conf```
-- Tambahkan ```port 8888```.
-![testestes](/ss/14-1.png)
+- Tambahkan ```port 8888```
+
+	![testestes](/ss/14-1.png)
 
 - Pindah ke directory ```/etc/apache2/sites-available``` dengan perintah ```cd /etc/apache2/sites-available```
 - Copy file default menjadi file ```naik.gunung.semerub12.pw```
@@ -400,7 +401,8 @@ apt-get install apache2 apache2-utils
 ![testestes](/ss/17-1.png)
 
 - Buat isi file ```.htaccess``` seperti gambar:
- ![testestes](/ss/17-2.png)
+ 
+ 	![testestes](/ss/17-2.png)
 
 - Gunakan perintah ```service apache2 restart``` untuk merestart apache
 - Buka browser dan akses https://penanjakan.semerub12.pw/public/images maka hasilnya semua akses file gambar yang mengandung semeru akan diarahkan ke semeru.jpg
