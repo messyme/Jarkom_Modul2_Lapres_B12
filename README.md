@@ -210,7 +210,9 @@ zone "semerub12.pw" {
 ## SOAL NO 7
 ### subdomain dengan nama http://naik.gunung.semerub12.pw, domain ini diarahkan ke IP Server PROBOLINGGO. Setelah selesai membuat keseluruhan domain, kamu diminta untuk segera mengatur web server.
 - Pada MOJOKERTO edit ```nano /etc/bind/delegasi/gunung.semerub12.pw``` dan tambahkan 
-```naik	IN	A	10.151.83.108```
+```
+naik	IN	A	10.151.83.108
+```
 ![testestes](/ss/7-1.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
@@ -399,6 +401,7 @@ apt-get install apache2 apache2-utils
 ![testestes](/ss/17-1.png)
 
 - Buat isi file ```.htaccess``` seperti gambar:
+
 ![testestes](/ss/17-2.png)
 
 - Gunakan perintah ```service apache2 restart``` untuk merestart apache
