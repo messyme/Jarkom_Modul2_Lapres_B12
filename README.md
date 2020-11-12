@@ -155,6 +155,18 @@ zone "semerub12.pw" {
 ## SOAL NO 6
 ### subdomain dengan alamat http://gunung.semerub12.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO. Bibah juga ingin memberi petunjuk mendaki gunung semeru kepada anggota komunitas sehingga dia meminta dibuatkan 
 #### MALANG
+- Edit file ```nano /etc/bind/jarkom/semerub12.pw```
+- Tambahkan konfigurasi
+```
+gunung	IN	A	10.151.83.108	; IP PROBOLINGGO
+naik	IN	NS	gunung
+```
+![testestes](/ss/6-1.png)
+
+- Edit ```nano /etc/bind/named.conf.options```
+- Comment kan ```dnssec-validation auto;``` menjadi ```//dnssec-validation auto;```
+- Tambahkan ```allow-query{any;};```
+
 - Edit ```nano /etc/bind/named.conf.local```
 ```
 zone "semerub12.pw" {
@@ -166,17 +178,13 @@ zone "semerub12.pw" {
 };
 ```
 ![testestes](/ss/6.png)
-
-- Edit file ```nano /etc/bind/jarkom/semerub12.pw```
-- Tambahkan konfigurasi
-```
-gunung	IN	A	10.151.83.108	; IP PROBOLINGGO
-naik	IN	NS	gunung
-```
-![testestes](/ss/6-1.png)
 - Kemudian restart bind9 dengan perintah ```service bind9 restart```
 
 #### MOJOKERTO
+- Edit ```nano /etc/bind/named.conf.options```
+- Comment kan ```//dnssec-validation auto;```
+- Tambahkan ```allow-query{any;};```
+
 - Edit file ```nano /etc/bind/named.conf.local```
 ```
 zone "semerub12.pw" {
@@ -200,8 +208,12 @@ zone "semerub12.pw" {
 <a name="7"></a>
 ## SOAL NO 7
 ### subdomain dengan nama http://naik.gunung.semerub12.pw, domain ini diarahkan ke IP Server PROBOLINGGO. Setelah selesai membuat keseluruhan domain, kamu diminta untuk segera mengatur web server.
-
+- Pada MOJOKERTO edit ```nano /etc/bind/delegasi/gunung.semerub12.pw``` dan tambahkan 
+	```naik	IN	A	10.151.83.108```
 ![testestes](/ss/7-1.png)
+- Kemudian restart bind9 dengan perintah ```service bind9 restart```
+
+- Lakukan testing ```ping gunung.semerub12.pw```
 ![testestes](/ss/7.png)
 </br></br></br>
 
